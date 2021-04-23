@@ -3,12 +3,20 @@ package Practice.Practice_01.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import Practice.Practice_01.domain.Member;
 import Practice.Practice_01.repository.MemberRepository;
-import Practice.Practice_01.repository.MemoryMemberRepository;
 
+@Service
 public class MemberService {
-	private final MemberRepository memberRepository = new MemoryMemberRepository();
+	private final MemberRepository memberRepository;
+
+	@Autowired
+	public MemberService(MemberRepository memberRepository) {
+		this.memberRepository = memberRepository;
+	}
 
 	// 회원가입
 	public Long join(Member member) {
